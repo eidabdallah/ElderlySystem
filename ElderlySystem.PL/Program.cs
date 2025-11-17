@@ -1,9 +1,12 @@
 
+using CloudinaryDotNet;
 using EA_Ecommerce.DAL.utils.SeedData;
+using ElderlySystem.BLL.Configurations;
 using ElderlySystem.DAL.Data;
 using ElderlySystem.DAL.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Scalar.AspNetCore;
 using System.Threading.Tasks;
 
@@ -19,6 +22,15 @@ namespace ElderlySystem.PL
                            options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
             builder.Services.AddScoped<ISeedData, SeedData>();
+
+
+            builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
+            builder.Services.AddSingleton<Cloudinary>(sp =>
+            {
+                var s = sp.GetRequiredService<IOptions<CloudinarySettings>>().Value;
+                var account = new CloudinaryDotNet.Account(s.CloudName, s.ApiKey, s.ApiSecret);
+                return new Cloudinary(account);
+            });
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
