@@ -1,22 +1,17 @@
 ﻿using ElderlySystem.DAL.Data;
 using ElderlySystem.DAL.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ElderlySystem.DAL.Repositories.Sponsor
+namespace ElderlySystem.DAL.Repositories.Elderly
 {
-    public class SponsorRepository : ISponsorRepository
+    public class ElderlyRepository : IElderlyRepository
     {
         private readonly ApplicationDbContext _context;
-        public SponsorRepository(ApplicationDbContext context)
+        public ElderlyRepository(ApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task<List<Elderly>> GetEldersBySponsorIdAsync(string sponsorId)
+        public async Task<List<DAL.Model.Elderly>> GetEldersBySponsorIdAsync(string sponsorId)
         {
             return await _context.ElderlySponsors
                 .Where(es => es.SponsorId == sponsorId).Include(es => es.Elderly)
@@ -27,7 +22,7 @@ namespace ElderlySystem.DAL.Repositories.Sponsor
             return await _context.Elderlies
                 .AnyAsync(e => e.NationalId == nationalId);
         }
-        public async Task<bool> AddElderlyAsync(Elderly elderly)
+        public async Task<bool> AddElderlyAsync(DAL.Model.Elderly elderly)
         {
             await _context.Elderlies.AddAsync(elderly);
             return await _context.SaveChangesAsync() > 0;
@@ -37,10 +32,10 @@ namespace ElderlySystem.DAL.Repositories.Sponsor
             await _context.ElderlySponsors.AddAsync(relation);
             return await _context.SaveChangesAsync() > 0;
         }
-        public async Task<List<Elderly>> GetAllElderlyAsync()
+        public async Task<List<DAL.Model.Elderly>> GetAllElderlyAsync()
         {
             return await _context.Elderlies
-                .Select(e => new Elderly
+                .Select(e => new DAL.Model.Elderly
                 {
                     Id = e.Id,
                     Name = e.Name

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElderlySystem.BLL.Service.Sponsor
+namespace ElderlySystem.BLL.Service.Elderly
 {
-    public interface ISponsorService
+    public interface IElderlyService
     {
         Task<ServiceResult> GetEldersBySponsorIdAsync(string sponsorId);
         Task<ServiceResult> AddElderlyBySponsorAsync(string sponsorId, ElderlyRegisterRequest request);

@@ -3,17 +3,17 @@ using ElderlySystem.BLL.Services.File;
 using ElderlySystem.DAL.DTO.Request.ElderlySponsor;
 using ElderlySystem.DAL.DTO.Response.ElderlySponsor;
 using ElderlySystem.DAL.Model;
-using ElderlySystem.DAL.Repositories.Sponsor;
+using ElderlySystem.DAL.Repositories.Elderly;
 using Mapster;
 
-namespace ElderlySystem.BLL.Service.Sponsor
+namespace ElderlySystem.BLL.Service.Elderly
 {
-    public class SponsorService : ISponsorService
+    public class ElderlyService : IElderlyService
     {
-        private readonly ISponsorRepository _repository;
+        private readonly IElderlyRepository _repository;
         private readonly IFileService _file;
 
-        public SponsorService(ISponsorRepository repository, IFileService file)
+        public ElderlyService(IElderlyRepository repository, IFileService file)
         {
             _repository = repository;
             _file = file;
@@ -37,7 +37,7 @@ namespace ElderlySystem.BLL.Service.Sponsor
             var nationalIdImage = await _file.UploadAsync(request.NationalIdImage, "elderly/national");
             var healthInsurance = await _file.UploadAsync(request.HealthInsurance, "elderly/insurance");
 
-            var elderly = request.Adapt<Elderly>();
+            var elderly = request.Adapt<DAL.Model.Elderly>();
             elderly.ComprehensiveExamination = examImage.Url;
             elderly.NationalIdImage = nationalIdImage.Url;
             elderly.HealthInsurance = healthInsurance.Url;
@@ -72,7 +72,6 @@ namespace ElderlySystem.BLL.Service.Sponsor
             var elderly = await _repository.GetElderlyByIdAsync(request.ElderlyId);
             if (!elderly)
                 return ServiceResult.Failure("المسن غير موجود.");
-
             if (await _repository.ExistsElderlyLinkToSponsorAsync(request.ElderlyId, sponsorId))
                 return ServiceResult.Failure("هذا الكفيل مرتبط مسبقاً بهذا المسن");
             var entity = new ElderlySponsor

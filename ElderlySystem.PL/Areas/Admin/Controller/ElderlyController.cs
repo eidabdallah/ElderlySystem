@@ -1,4 +1,4 @@
-﻿using ElderlySystem.BLL.Service.Sponsor;
+﻿using ElderlySystem.BLL.Service.Elderly;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +10,12 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
     [Authorize(Roles = "Admin")]
     public class ElderlyController : ControllerBase
     {
-        private readonly ISponsorService _sponsorService;
-        public ElderlyController(ISponsorService sponsorService)
+        private readonly IElderlyService _elderlyService;
+
+        public ElderlyController(IElderlyService elderlyService)
         {
-            _sponsorService = sponsorService;
+            _elderlyService = elderlyService;
         }
+
     }
 }
