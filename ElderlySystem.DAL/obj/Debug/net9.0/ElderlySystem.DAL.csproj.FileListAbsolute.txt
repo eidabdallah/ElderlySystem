@@ -1,0 +1,13 @@
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ElderlySystem.DAL.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ElderlySystem.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ElderlySystem.DAL.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ElderlySystem.DAL.AssemblyInfo.cs
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ElderlySystem.DAL.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ElderlySystem.DAL.sourcelink.json
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\bin\Debug\net9.0\ElderlySystem.DAL.deps.json
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\bin\Debug\net9.0\ElderlySystem.DAL.dll
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\bin\Debug\net9.0\ElderlySystem.DAL.pdb
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ElderlySystem.DAL.dll
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\refint\ElderlySystem.DAL.dll
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ElderlySystem.DAL.pdb
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.DAL\obj\Debug\net9.0\ref\ElderlySystem.DAL.dll

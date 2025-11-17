@@ -1,0 +1,6 @@
+@ElderlySystem.PL_HostAddress = http://localhost:5043
+
+GET {{ElderlySystem.PL_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
