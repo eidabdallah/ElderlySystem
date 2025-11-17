@@ -3,10 +3,13 @@ using CloudinaryDotNet;
 using EA_Ecommerce.DAL.utils.SeedData;
 using EA_Ecommerce.PL.utils;
 using ElderlySystem.BLL.Configurations;
+using ElderlySystem.BLL.Service.Sponsor;
 using ElderlySystem.BLL.Services.Authentication;
+using ElderlySystem.BLL.Services.File;
 using ElderlySystem.BLL.Services.User;
 using ElderlySystem.DAL.Data;
 using ElderlySystem.DAL.Model;
+using ElderlySystem.DAL.Repositories.Sponsor;
 using ElderlySystem.DAL.Repositories.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +36,10 @@ namespace ElderlySystem.PL
             builder.Services.AddScoped<IEmailSender, EmailSetting>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ISponsorRepository, SponsorRepository>();
+            builder.Services.AddScoped<ISponsorService, SponsorService>();
+            builder.Services.AddScoped<IFileService, FileService>();
+
 
 
 
