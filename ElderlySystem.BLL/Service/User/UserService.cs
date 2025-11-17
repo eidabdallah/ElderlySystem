@@ -77,18 +77,31 @@ namespace ElderlySystem.BLL.Services.User
             };
             return ServiceResult.SuccessWithData(userInfo, "تم جلب معلومات المستخدم بنجاح");
         }
-        public async Task<bool> IsBlockedAsync(string userId)
+        public async Task<ServiceResult> IsBlockedAsync(string userId)
         {
-            return await _userRepository.IsBlockedAsync(userId);
-        }
-        public async Task<bool> BlockUserAsync(string userId, int days)
-        {
-            return await _userRepository.BlockUserAsync(userId, days);
+            var isBlocked = await _userRepository.IsBlockedAsync(userId);
+            return ServiceResult.SuccessMessage(isBlocked ? "المستخدم محظور حالياً" : "المستخدم غير محظور");
         }
 
-        public async Task<bool> UnBlockUserAsync(string userId)
+        public async Task<ServiceResult> BlockUserAsync(string userId, int days)
         {
-            return await _userRepository.UnBlockUserAsync(userId);
+            var result = await _userRepository.BlockUserAsync(userId, days);
+
+            if (!result)
+                return ServiceResult.Failure("حدث خطأ أثناء حظر المستخدم.");
+
+            return ServiceResult.SuccessMessage($"تم حظر المستخدم لمدة {days} يوم/أيام.");
         }
+
+        public async Task<ServiceResult> UnBlockUserAsync(string userId)
+        {
+            var result = await _userRepository.UnBlockUserAsync(userId);
+
+            if (!result)
+                return ServiceResult.Failure("حدث خطأ أثناء فك الحظر عن المستخدم.");
+
+            return ServiceResult.SuccessMessage("تم فك الحظر عن المستخدم بنجاح.");
+        }
+
     }
 }

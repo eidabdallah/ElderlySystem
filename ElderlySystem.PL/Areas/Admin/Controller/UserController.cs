@@ -4,6 +4,7 @@ using ElderlySystem.DAL.DTO.Request.User;
 using ElderlySystem.DAL.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -92,27 +93,25 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
         public async Task<IActionResult> BlockUser([FromRoute] string id, [FromBody] BlockRequestDTO request)
         {
             var result = await _userService.BlockUserAsync(id, request.days);
-            if (!result)
-            {
-                return NotFound();
-            }
-            return Ok(new { message = "blocked user successfully" });
+            if (!result.Success)
+                return BadRequest(new { message = result.Message });
+
+            return Ok(new { message = result.Message });
         }
         [HttpPatch("unblock/{id}")]
         public async Task<IActionResult> UnblockUser([FromRoute] string id)
         {
             var result = await _userService.UnBlockUserAsync(id);
-            if (!result)
-            {
-                return NotFound();
-            }
-            return Ok(new { message = "UnBlocked user successfully" });
+            if (!result.Success)
+                return BadRequest(new { message = result.Message });
+
+            return Ok(new { message = result.Message });
         }
         [HttpPatch("isBlock/{id}")]
         public async Task<IActionResult> IsBlockUser([FromRoute] string id)
         {
             var isBlocked = await _userService.IsBlockedAsync(id);
-            return Ok(isBlocked);
+            return Ok(new { message = isBlocked.Message });
         }
     }
 }

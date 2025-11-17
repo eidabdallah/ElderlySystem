@@ -11,8 +11,8 @@ namespace ElderlySystem.BLL.Services.User
         Task<ServiceResult> ChangeUserRoleAsync(string userId, ChangeRoleRequest roleName);
         Task<bool> ChangeStatusToggleAsync(string userId);
         Task<ServiceResult> GetByIdAsync(string UserId);
-        Task<bool> BlockUserAsync(string userId, int days);
-        Task<bool> UnBlockUserAsync(string userId);
-        Task<bool> IsBlockedAsync(string userId);
+        Task<ServiceResult> BlockUserAsync(string userId, int days);
+        Task<ServiceResult> UnBlockUserAsync(string userId);
+        Task<ServiceResult> IsBlockedAsync(string userId);
     }
 }
