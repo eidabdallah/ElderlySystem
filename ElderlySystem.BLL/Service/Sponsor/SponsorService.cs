@@ -5,11 +5,6 @@ using ElderlySystem.DAL.DTO.Response.ElderlySponsor;
 using ElderlySystem.DAL.Model;
 using ElderlySystem.DAL.Repositories.Sponsor;
 using Mapster;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElderlySystem.BLL.Service.Sponsor
 {
