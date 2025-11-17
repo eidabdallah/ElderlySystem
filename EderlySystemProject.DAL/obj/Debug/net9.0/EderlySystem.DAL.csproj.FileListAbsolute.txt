@@ -1,0 +1,12 @@
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\EderlySystem.DAL.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\EderlySystem.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\EderlySystem.DAL.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\EderlySystem.DAL.AssemblyInfo.cs
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\EderlySystem.DAL.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\bin\Debug\net9.0\EderlySystem.DAL.deps.json
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\bin\Debug\net9.0\EderlySystem.DAL.dll
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\bin\Debug\net9.0\EderlySystem.DAL.pdb
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\EderlySystem.DAL.dll
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\refint\EderlySystem.DAL.dll
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\EderlySystem.DAL.pdb
+C:\Users\user\Desktop\EderlySystem\EderlySystemProject.DAL\obj\Debug\net9.0\ref\EderlySystem.DAL.dll
