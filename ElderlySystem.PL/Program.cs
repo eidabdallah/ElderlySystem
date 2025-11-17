@@ -4,8 +4,10 @@ using EA_Ecommerce.DAL.utils.SeedData;
 using EA_Ecommerce.PL.utils;
 using ElderlySystem.BLL.Configurations;
 using ElderlySystem.BLL.Services.Authentication;
+using ElderlySystem.BLL.Services.User;
 using ElderlySystem.DAL.Data;
 using ElderlySystem.DAL.Model;
+using ElderlySystem.DAL.Repositories.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,7 +16,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ElderlySystem.PL
 {
@@ -30,6 +31,8 @@ namespace ElderlySystem.PL
             builder.Services.AddScoped<ISeedData, SeedData>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<IEmailSender, EmailSetting>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 

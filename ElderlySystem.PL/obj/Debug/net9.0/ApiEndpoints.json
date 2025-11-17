@@ -1,5 +1,142 @@
 [
   {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
+    "Method": "GetByIdForUser",
+    "RelativePath": "api/Admin/User",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
+    "Method": "GetByIdForAdmin",
+    "RelativePath": "api/Admin/User/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
+    "Method": "GetAllUserWithFilter",
+    "RelativePath": "api/Admin/User/All",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
+    "Method": "BlockUser",
+    "RelativePath": "api/Admin/User/block/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "ElderlySystem.DAL.DTO.Request.User.BlockRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
+    "Method": "ChangeRole",
+    "RelativePath": "api/Admin/User/Change-Role/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "ElderlySystem.DAL.DTO.Request.User.ChangeRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
+    "Method": "ChangeStatusToggle",
+    "RelativePath": "api/Admin/User/change-status/{userId}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
+    "Method": "IsBlockUser",
+    "RelativePath": "api/Admin/User/isBlock/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
+    "Method": "UnblockUser",
+    "RelativePath": "api/Admin/User/unblock/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ElderlySystem.PL.Areas.Identity.Controller.AccountController",
     "Method": "ConfirmEmail",
     "RelativePath": "api/Identity/Account/ConfirmEmail",
