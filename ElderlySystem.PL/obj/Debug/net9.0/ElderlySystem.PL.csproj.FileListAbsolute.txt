@@ -182,3 +182,6 @@ C:\Users\user\Desktop\ElderlySystem\ElderlySystem.PL\bin\Debug\net9.0\ElderlySys
 C:\Users\user\Desktop\ElderlySystem\ElderlySystem.PL\bin\Debug\net9.0\ElderlySystem.DAL.dll
 C:\Users\user\Desktop\ElderlySystem\ElderlySystem.PL\bin\Debug\net9.0\ElderlySystem.BLL.pdb
 C:\Users\user\Desktop\ElderlySystem\ElderlySystem.PL\bin\Debug\net9.0\ElderlySystem.DAL.pdb
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.PL\bin\Debug\net9.0\ElderlySystem.PL.staticwebassets.runtime.json
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.PL\obj\Debug\net9.0\compressed\t24i2c8az1-kqafvby0sg.gz
+C:\Users\user\Desktop\ElderlySystem\ElderlySystem.PL\obj\Debug\net9.0\compressed\i04q48rvyf-a1amflvcz5.gz

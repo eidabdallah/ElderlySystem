@@ -1,13 +1,19 @@
 
 using CloudinaryDotNet;
 using EA_Ecommerce.DAL.utils.SeedData;
+using EA_Ecommerce.PL.utils;
 using ElderlySystem.BLL.Configurations;
+using ElderlySystem.BLL.Services.Authentication;
 using ElderlySystem.DAL.Data;
 using ElderlySystem.DAL.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ElderlySystem.PL
@@ -22,6 +28,9 @@ namespace ElderlySystem.PL
                            options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
             builder.Services.AddScoped<ISeedData, SeedData>();
+            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddScoped<IEmailSender, EmailSetting>();
+
 
 
             builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
@@ -41,6 +50,22 @@ namespace ElderlySystem.PL
 
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("jwtOptions")["SecretKey"]!))
+                };
+            });
 
             var app = builder.Build();
 
