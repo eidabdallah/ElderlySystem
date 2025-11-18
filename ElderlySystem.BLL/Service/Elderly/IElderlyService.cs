@@ -12,7 +12,7 @@ namespace ElderlySystem.BLL.Service.Elderly
     {
         Task<ServiceResult> GetEldersBySponsorIdAsync(string sponsorId);
         Task<ServiceResult> AddElderlyBySponsorAsync(string sponsorId, ElderlyRegisterRequest request);
-        Task<ServiceResult> GetAllElderlyAsync();
+        Task<ServiceResult> GetElderlyByNationalIdAsync(string nationalId);
         Task<ServiceResult> LinkSponsorToElderlyAsync(string sponsorId, LinkElderlySponsorRequest request);
 
     }

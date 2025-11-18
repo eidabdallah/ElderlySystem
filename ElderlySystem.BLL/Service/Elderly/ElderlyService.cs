@@ -54,18 +54,16 @@ namespace ElderlySystem.BLL.Service.Elderly
             return ServiceResult.SuccessMessage("تم اضافة المسن بنجاح");
 
         }
-        public async Task<ServiceResult> GetAllElderlyAsync()
+        public async Task<ServiceResult> GetElderlyByNationalIdAsync(string nationalId)
         {
-            var elderlies = await _repository.GetAllElderlyAsync();
+            var elderly = await _repository.GetElderlyByNationalIdAsync(nationalId);
 
-            if (elderlies.Count == 0)
-                return ServiceResult.SuccessMessage("لا يوجد مسنين");
+            if (elderly is null)
+                return ServiceResult.SuccessMessage("هذه المسنّة غير مسجّلة أو لم يتم قبولها.");
 
-            var response = elderlies
-                .Select(e => new { e.Id, e.Name })
-                .ToList();
+            var response = new { elderly.Id, elderly.Name, elderly.NationalId, elderly.Age, elderly.City, elderly.Street };
 
-            return ServiceResult.SuccessWithData(response, "تم جلب جميع المسنين");
+            return ServiceResult.SuccessWithData(response, "تم العثور على المسنّة بنجاح.");
         }
         public async Task<ServiceResult> LinkSponsorToElderlyAsync(string sponsorId, LinkElderlySponsorRequest request)
         {

@@ -1,19 +1,11 @@
 
 using CloudinaryDotNet;
 using EA_Ecommerce.DAL.utils.SeedData;
-using EA_Ecommerce.PL.utils;
 using ElderlySystem.BLL.Configurations;
-using ElderlySystem.BLL.Service.Elderly;
-using ElderlySystem.BLL.Services.Authentication;
-using ElderlySystem.BLL.Services.File;
-using ElderlySystem.BLL.Services.User;
 using ElderlySystem.DAL.Data;
 using ElderlySystem.DAL.Model;
-using ElderlySystem.DAL.Repositories.Elderly;
-using ElderlySystem.DAL.Repositories.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

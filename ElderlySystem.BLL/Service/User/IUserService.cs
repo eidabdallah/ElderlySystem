@@ -9,7 +9,7 @@ namespace ElderlySystem.BLL.Services.User
     {
         Task<ServiceResult> GetAllUserWithFilterAsync(Status? status, Role? role = null);
         Task<ServiceResult> ChangeUserRoleAsync(string userId, ChangeRoleRequest roleName);
-        Task<bool> ChangeStatusToggleAsync(string userId);
+        Task<bool> ChangeStatusAsync(string userId, Status newStatus);
         Task<ServiceResult> GetByIdAsync(string UserId);
         Task<ServiceResult> BlockUserAsync(string userId, int days);
         Task<ServiceResult> UnBlockUserAsync(string userId);

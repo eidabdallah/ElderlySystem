@@ -16,7 +16,7 @@ namespace ElderlySystem.DAL.Model
         public int CurrentCapacity { get; set; } = 0;
         public float Price { get; set; } 
         public string? Description { get; set; }
-        public Status Status { get; set; } = Status.Inactive;
+        public Status Status { get; set; } = Status.Pending;
         public List<RoomImage> RoomImages { get; set; } = new List<RoomImage>();
 
         //relaion 

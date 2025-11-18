@@ -11,7 +11,7 @@ namespace ElderlySystem.DAL.Model
         public string KinShip {  get; set; }
         public string Degree { get; set; }
         public Elderly Elderly { get; set; }
-        public Status status { get; set; } = Status.Inactive;
+        public Status status { get; set; } = Status.Pending;
         public Sponsor Sponsor { get; set; }
 
     }

@@ -21,6 +21,6 @@ namespace ElderlySystem.DAL.Model
         public string NationalId { get; set; }
         public Gender Gender { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public Status Status { get; set; } = Status.Inactive;
+        public Status Status { get; set; } = Status.Pending;
     }
 }

@@ -79,16 +79,16 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
             return Ok(new { message = result.Message });
         }
         [HttpPatch("change-status/{userId}")]
-        public async Task<IActionResult> ChangeStatusToggle([FromRoute] string userId)
+        public async Task<IActionResult> ChangeStatus([FromRoute] string userId,[FromBody] ChangeStatusRequest request)
         {
-            var result = await _userService.ChangeStatusToggleAsync(userId);
+            var result = await _userService.ChangeStatusAsync(userId, request.Status);
             if (!result)
             {
                 return NotFound(new { Message = "المستخدم غير موجود او لم تتم تغيير الحالة" });
             }
             return Ok(new { Message = "تم تغيير الحالة بنجاح" });
-
         }
+
         [HttpPatch("block/{id}")]
         public async Task<IActionResult> BlockUser([FromRoute] string id, [FromBody] BlockRequestDTO request)
         {

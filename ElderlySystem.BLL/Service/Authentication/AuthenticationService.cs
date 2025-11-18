@@ -38,7 +38,7 @@ namespace ElderlySystem.BLL.Services.Authentication
             var result = await _signInManager.CheckPasswordSignInAsync(user , request.Password , true);
             if (result.Succeeded)
             {
-                if (user.Status == Status.Inactive) return ServiceResult.SuccessMessage("تم تسجيل الدخول بنجاح ، لكن حسابك لم يتم القبول عليه بعد");
+                if (user.Status == Status.Pending) return ServiceResult.SuccessMessage("تم تسجيل الدخول بنجاح ، لكن حسابك لم يتم القبول عليه بعد");
                 var Token = await CreateTokenAsync(user);
                 return ServiceResult.SuccessWithData(Token, "تم تسجيل الدخول بنجاح.");
             }

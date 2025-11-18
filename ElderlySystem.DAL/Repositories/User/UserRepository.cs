@@ -61,16 +61,16 @@ namespace ElderlySystem.DAL.Repositories.User
             var addResult = await _userManager.AddToRoleAsync(user, roleName);
             return addResult.Succeeded;
         }
-        public async Task<bool> ChangeStatusToggleAsync(string userId)
+        public async Task<bool> ChangeStatusAsync(string userId, Status newStatus)
         {
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
-            {
                 return false;
-            }
-            user.Status = user.Status == Status.Active ? Status.Inactive : Status.Active;
+
+            user.Status = newStatus;
             return await _context.SaveChangesAsync() > 0;
         }
+
         public async Task<ApplicationUser?> GetByIdAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);

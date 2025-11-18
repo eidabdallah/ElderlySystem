@@ -54,14 +54,15 @@ namespace ElderlySystem.BLL.Services.User
                 return ServiceResult.Failure("حدث خطأ أثناء تغيير دور المستخدم.");
             return ServiceResult.SuccessMessage("تم تغيير دور المستخدم بنجاح.");
         }
-        public async Task<bool> ChangeStatusToggleAsync(string userId)
+        public async Task<bool> ChangeStatusAsync(string userId, Status newStatus)
         {
-            return await _userRepository.ChangeStatusToggleAsync(userId);
+            return await _userRepository.ChangeStatusAsync(userId, newStatus);
         }
+
         public async Task<ServiceResult> GetByIdAsync(string UserId)
         {
             var user = await _userRepository.GetByIdAsync(UserId);
-            if (user is null)
+            if (user is null)   
             {
                 return ServiceResult.Failure("المستخدم غير موجود");
             }

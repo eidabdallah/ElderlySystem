@@ -90,7 +90,7 @@
   },
   {
     "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
-    "Method": "ChangeStatusToggle",
+    "Method": "ChangeStatus",
     "RelativePath": "api/Admin/User/change-status/{userId}",
     "HttpMethod": "PATCH",
     "IsController": true,
@@ -99,6 +99,11 @@
       {
         "Name": "userId",
         "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "ElderlySystem.DAL.DTO.Request.User.ChangeStatusRequest",
         "IsRequired": true
       }
     ],
@@ -319,16 +324,6 @@
   },
   {
     "ContainingType": "ElderlySystem.PL.Areas.Sponsor.Controller.ElderlyController",
-    "Method": "GetAllElderly",
-    "RelativePath": "api/Sponsor/Elderly/all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ElderlySystem.PL.Areas.Sponsor.Controller.ElderlyController",
     "Method": "LinkElderlyToSponsor",
     "RelativePath": "api/Sponsor/Elderly/link",
     "HttpMethod": "POST",
@@ -339,6 +334,22 @@
         "Name": "request",
         "Type": "ElderlySystem.DAL.DTO.Request.ElderlySponsor.LinkElderlySponsorRequest",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Sponsor.Controller.ElderlyController",
+    "Method": "GetElderlyByNationalId",
+    "RelativePath": "api/Sponsor/Elderly/Search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NationalId",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

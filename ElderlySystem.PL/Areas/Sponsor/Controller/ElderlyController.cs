@@ -38,10 +38,10 @@ namespace ElderlySystem.PL.Areas.Sponsor.Controller
             }
             return Ok(new { message = result.Message });
         }
-        [HttpGet("all")]
-        public async Task<IActionResult> GetAllElderly()
+        [HttpGet("Search")]
+        public async Task<IActionResult> GetElderlyByNationalId([FromQuery] string NationalId)
         {
-            var result = await _elderlyService.GetAllElderlyAsync();
+            var result = await _elderlyService.GetElderlyByNationalIdAsync(NationalId);
 
             if (result.Data is null)
                 return Ok(new { message = result.Message });

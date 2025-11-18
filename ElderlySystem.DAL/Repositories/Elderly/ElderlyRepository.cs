@@ -32,15 +32,11 @@ namespace ElderlySystem.DAL.Repositories.Elderly
             await _context.ElderlySponsors.AddAsync(relation);
             return await _context.SaveChangesAsync() > 0;
         }
-        public async Task<List<DAL.Model.Elderly>> GetAllElderlyAsync()
+        public async Task<DAL.Model.Elderly?> GetElderlyByNationalIdAsync(string nationalId)
         {
             return await _context.Elderlies
-                .Select(e => new DAL.Model.Elderly
-                {
-                    Id = e.Id,
-                    Name = e.Name
-                })
-                .ToListAsync();
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => e.NationalId == nationalId);
         }
         public async Task<bool> ExistsElderlyLinkToSponsorAsync(int elderlyId, string sponsorId)
         {
