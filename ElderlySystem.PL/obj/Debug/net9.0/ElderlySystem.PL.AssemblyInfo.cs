@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElderlySystem.PL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0cc0e02b94ebafb1feb9440073d5e6137f6ae8cb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4070d7e641f9e956e7648eae95c3d276b6cfc2a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElderlySystem.PL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElderlySystem.PL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

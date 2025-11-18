@@ -31,15 +31,8 @@ namespace ElderlySystem.PL
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                            options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
-            builder.Services.AddScoped<ISeedData, SeedData>();
-            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-            builder.Services.AddScoped<IEmailSender, EmailSetting>();
-            builder.Services.AddScoped<IUserService, UserService>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<IElderlyRepository, ElderlyRepository>();
-            builder.Services.AddScoped<IElderlyService, ElderlyService>();
-            builder.Services.AddScoped<IFileService, FileService>();
 
+            builder.Services.AddConfig();
 
             builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("Cloudinary"));
             builder.Services.AddSingleton<Cloudinary>(sp =>
@@ -55,6 +48,7 @@ namespace ElderlySystem.PL
             })
            .AddEntityFrameworkStores<ApplicationDbContext>()
            .AddDefaultTokenProviders();
+
 
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
