@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace ElderlySystem.DAL.Model
 {
@@ -9,8 +10,13 @@ namespace ElderlySystem.DAL.Model
         public Elderly Elderly { get; set; }
         public int VisitorId { get; set; }
         public Visitor Visitor { get; set; }
-        public DateTime? Date { get; set; }
-        public TimeSpan? StartTime { get; set; }
-        public TimeSpan? EndTime { get; set; }
+        [Required(ErrorMessage = "تاريخ الزيارة مطلوب.")]
+        public DateTime Date { get; set; }
+
+        [Required(ErrorMessage = "وقت بداية الزيارة مطلوب.")]
+        public TimeSpan StartTime { get; set; }
+
+        [Required(ErrorMessage = "وقت نهاية الزيارة مطلوب.")]
+        public TimeSpan EndTime { get; set; }
     }
 }

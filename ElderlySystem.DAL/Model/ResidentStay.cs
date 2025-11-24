@@ -1,6 +1,8 @@
 ﻿using EderlySystem.DAL.Enums;
+using ElderlySystem.DAL.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +12,8 @@ namespace ElderlySystem.DAL.Model
     public class ResidentStay
     {
         public int Id { get; set; }
-        public Status Status { get; set; } = Status.Active;
+        public ResidentStayStatus Status { get; set; } = ResidentStayStatus.Active;
+        [Required(ErrorMessage = "تاريخ البداية مطلوب.")]
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime? EndDate { get; set; }
 

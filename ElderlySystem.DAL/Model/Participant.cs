@@ -1,8 +1,11 @@
-﻿namespace ElderlySystem.DAL.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ElderlySystem.DAL.Model
 {
     public class Participant
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "اسم الجهة المشاركة مطلوب.")]
         public string OrganizationName { get; set; }
 
         //multi value btw Participant and Activity

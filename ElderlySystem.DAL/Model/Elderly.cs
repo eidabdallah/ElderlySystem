@@ -4,24 +4,53 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ElderlySystem.DAL.Model
 {
-   
     [Index(nameof(NationalId), IsUnique = true)]
     public class Elderly
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "اسم المسن مطلوب.")]
+        [StringLength(100, ErrorMessage = "الاسم يجب ألا يتجاوز 100 حرف.")]
         public string Name { get; set; }
-        [RegularExpression(@"^\d{9}$", ErrorMessage = "يجب ان يكون رقم الهوية مكون من 9 ارقام")]
+
+        [Required(ErrorMessage = "رقم الهوية مطلوب.")]
+        [RegularExpression(@"^\d{9}$", ErrorMessage = "يجب أن يكون رقم الهوية مكوّنًا من 9 أرقام.")]
         public string NationalId { get; set; }
+
+        [Required(ErrorMessage = "الديانة / المذهب مطلوب.")]
+        [StringLength(50, ErrorMessage = "القيمة يجب ألا تتجاوز 50 حرف.")]
         public string Doctrine { get; set; }
+
+        [Required(ErrorMessage = "الحالة الاجتماعية مطلوبة.")]
         public MaritalStatus MaritalStatus { get; set; }
+
+        [Required(ErrorMessage = "اسم المدينة مطلوب.")]
+        [StringLength(50, ErrorMessage = "اسم المدينة يجب ألا يتجاوز 50 حرف.")]
         public string City { get; set; }
+
+        [Required(ErrorMessage = "اسم الشارع مطلوب.")]
+        [StringLength(100, ErrorMessage = "اسم الشارع يجب ألا يتجاوز 100 حرف.")]
         public string Street { get; set; }
+
+        [Required(ErrorMessage = "الحالة الصحية مطلوبة.")]
+        [StringLength(200, ErrorMessage = "الحالة الصحية يجب ألا تتجاوز 200 حرف.")]
         public string HealthStatus { get; set; }
         public ICollection<string> Diseases { get; set; } = new List<string>();
+
+        [Required(ErrorMessage = "تاريخ الميلاد مطلوب.")]
         public DateTime BDate { get; set; }
-        public string ComprehensiveExamination { get; set; } // url image
-        public string NationalIdImage { get; set; } // url image
-        public string HealthInsurance { get; set; } // url image
+
+        [Required(ErrorMessage = "صورة الفحص الشامل مطلوبة.")]
+        public string ComprehensiveExamination { get; set; } 
+
+        [Required(ErrorMessage = "صورة الهوية مطلوبة.")]
+        public string NationalIdImage { get; set; } 
+
+        [Required(ErrorMessage = "صورة التأمين الصحي مطلوبة.")]
+        public string HealthInsurance { get; set; } 
+
+        [Required(ErrorMessage = "سبب التسجيل مطلوب.")]
+        [StringLength(300, ErrorMessage = "السبب يجب ألا يتجاوز 300 حرف.")]
         public string ReasonRegister { get; set; }
 
         public int Age
@@ -34,13 +63,9 @@ namespace ElderlySystem.DAL.Model
                 return age;
             }
         }
+
         public ICollection<ElderlySponsor> ElderlySponsors { get; set; } = new List<ElderlySponsor>();
-
-        //relaion 1 - m btw elderly and ResidentStay
         public ICollection<ResidentStay> ResidentStays { get; set; } = new List<ResidentStay>();
-
         public ICollection<ElderlyVisitor> ElderlyVisitors { get; set; } = new List<ElderlyVisitor>();
-
     }
-
 }

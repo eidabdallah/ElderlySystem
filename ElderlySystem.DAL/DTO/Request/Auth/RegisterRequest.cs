@@ -16,7 +16,7 @@ namespace ElderlySystem.DAL.DTO.Request.Auth
         public string UserName { get; set; }
         public string PhoneNumber { get; set; }
         public string NationalId { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public string City { get; set; }
         public string? Street { get; set; }

@@ -25,7 +25,7 @@ namespace ElderlySystem.PL.Areas.Sponsor.Controller
             var result = await _elderlyService.GetEldersBySponsorIdAsync(SponsorId!);
             if (result.Data is null)
                 return Ok(new { message = result.Message });
-            return Ok(new { message = result.Message, users = result.Data });
+            return Ok(new { message = result.Message, elderlies = result.Data });
         }
         [HttpPost]
         public async Task<IActionResult> AddElderlyBySponsor([FromForm] ElderlyRegisterRequest request)
@@ -34,7 +34,7 @@ namespace ElderlySystem.PL.Areas.Sponsor.Controller
             var result = await _elderlyService.AddElderlyBySponsorAsync(SponsorId!, request);
             if (!result.Success)
             {
-                return NotFound(new { message = result.Message });
+                return BadRequest(new { message = result.Message });
             }
             return Ok(new { message = result.Message });
         }
