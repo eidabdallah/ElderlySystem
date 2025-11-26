@@ -10,5 +10,7 @@ namespace ElderlySystem.BLL.Service.Room
         Task<ServiceResult> ToggleRoomStatusAsync(int roomId);
         Task<ServiceResult> ChangeImageRoomAsync(int id, ImageRoomRequest request);
         Task<ServiceResult> DeleteRoomAsync(int id);
+        Task<ServiceResult> GetRoomByIdAsync(int id);
+        Task<ServiceResult> GetAllRoomAsync();
     }
 }

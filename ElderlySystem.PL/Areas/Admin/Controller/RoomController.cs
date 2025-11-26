@@ -20,6 +20,25 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
         {
             _service = service;
         }
+        [HttpGet("")]
+        public async Task<IActionResult> GetAllRoom() {
+            var result = await _service.GetAllRoomAsync();
+            if (!result.Success)
+            {
+                return BadRequest(new { message = result.Message });
+            }
+            return Ok(new { message = result.Message , Rooms = result.Data });
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetRoomById(int id)
+        {
+            var result = await _service.GetRoomByIdAsync(id);
+            if (!result.Success)
+            {
+                return BadRequest(new { message = result.Message });
+            }
+            return Ok(new { message = result.Message, Rooms = result.Data });
+        }
         [HttpPost("")]
         public async Task<IActionResult> AddRoom([FromForm] RoomCreateRequest request)
         {

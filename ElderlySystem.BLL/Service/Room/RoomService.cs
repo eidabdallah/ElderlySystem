@@ -1,10 +1,11 @@
 ﻿using ElderlySystem.BLL.Helpers;
 using ElderlySystem.BLL.Services.File;
 using ElderlySystem.DAL.DTO.Request.Room;
+using ElderlySystem.DAL.DTO.Response.Room;
 using ElderlySystem.DAL.Enums;
 using ElderlySystem.DAL.Model;
 using ElderlySystem.DAL.Repositories.Room;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Mapster;
 
 namespace ElderlySystem.BLL.Service.Room
 {
@@ -120,6 +121,23 @@ namespace ElderlySystem.BLL.Service.Room
                 return ServiceResult.Failure("حدث خطأ أثناء حذف الغرفة.");
             return ServiceResult.SuccessMessage("تم حذف الغرفة بنجاح.");
 
+        }
+        public async Task<ServiceResult> GetAllRoomAsync()
+        {
+            var result = await _repository.GetAllRoomAsync();
+            var rooms = result.Adapt<List<RoomResponse>>();
+            return ServiceResult.SuccessWithData(rooms , "تم جلب جميع الغرف");
+        }
+        public async Task<ServiceResult> GetRoomByIdAsync(int id)
+        {
+            var result = await _repository.GetRoomByIdWithImagesAsync(id);
+            if (result is null)
+                return ServiceResult.Failure("الغرفة غير متوفرة.");
+            var roomDto = result.Adapt<RoomDetailsResponse>();
+            roomDto.Images = result.RoomImages
+                .Select(ri => ri.Url)
+                .ToList();
+            return ServiceResult.SuccessWithData(roomDto, "تم جلب الغرف بنجاح");
         }
 
 
