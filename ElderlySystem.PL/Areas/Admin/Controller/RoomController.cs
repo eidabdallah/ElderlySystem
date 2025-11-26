@@ -1,5 +1,6 @@
 ﻿using ElderlySystem.BLL.Service.Room;
 using ElderlySystem.DAL.DTO.Request.Room;
+using ElderlySystem.DAL.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,12 +22,12 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
         [HttpPost("")]
         public async Task<IActionResult> AddRoom([FromForm] RoomCreateRequest request)
         {
-            var room = await _service.AddRoomAsync(request);
-            if (!room.Success)
+            var result = await _service.AddRoomAsync(request);
+            if (!result.Success)
             {
-                return BadRequest(new { message = room.Message });
+                return BadRequest(new { message = result.Message });
             }
-            return Ok(new { message = room.Message});
+            return Ok(new { message = result.Message});
         }
         [HttpPatch("{id}")]
         public async Task<IActionResult> UpdateRoom([FromRoute] int id ,[FromBody] UpdateRoomRequest request)
@@ -36,6 +37,26 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
                 return BadRequest(new { message = room.Message });
             }
             return Ok(new { message = room.Message });
+        }
+        [HttpPatch("toggle-status/{RoomId}")]
+        public async Task<IActionResult> ToggleStatus([FromRoute] int RoomId)
+        {
+            var result = await _service.ToggleRoomStatusAsync(RoomId);
+
+            if (!result.Success)
+                return BadRequest(new { message = result.Message });
+
+            return Ok(new { message = result.Message });
+        }
+        [HttpPatch("Change-imageRoom/{RoomId}")]
+        public async Task<IActionResult> ChangeImageRoom([FromRoute] int RoomId , [FromForm] ImageRoomRequest request)
+        {
+            var result = await _service.ChangeImageRoomAsync(RoomId , request);
+
+            if (!result.Success)
+                return BadRequest(new { message = result.Message });
+
+            return Ok(new { message = result.Message });
         }
     }
 }

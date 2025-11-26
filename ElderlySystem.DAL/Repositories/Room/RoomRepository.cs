@@ -29,6 +29,28 @@ namespace ElderlySystem.DAL.Repositories.Room
         {
             await _context.SaveChangesAsync();
         }
+        public async Task<DAL.Model.Room?> GetRoomByIdWithImagesAsync(int id)
+        {
+            return await _context.Rooms
+                .Include(r => r.RoomImages)
+                .FirstOrDefaultAsync(r => r.Id == id);
+        }
+        public async Task<bool> UpdateRoomImagesAsync(DAL.Model.Room room, List<(string Url, string PublicId)> newImages)
+        {
+            _context.RoomImages.RemoveRange(room.RoomImages);
+            foreach (var (url, publicId) in newImages)
+            {
+                room.RoomImages.Add(new RoomImage
+                {
+                    Url = url,
+                    PublicId = publicId,
+                    RoomId = room.Id
+                });
+            }
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+
 
     }
 }
