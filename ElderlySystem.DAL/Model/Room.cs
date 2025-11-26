@@ -1,11 +1,5 @@
-﻿using EderlySystem.DAL.Enums;
-using ElderlySystem.DAL.Enums;
-using System;
-using System.Collections.Generic;
+﻿using ElderlySystem.DAL.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElderlySystem.DAL.Model
 {
@@ -27,7 +21,7 @@ namespace ElderlySystem.DAL.Model
         public float Price { get; set; }
         [Required(ErrorMessage = "الوصف مطلوب.")]
         public string Description { get; set; }
-        public Status Status { get; set; } = Status.Active;
+        public RoomStatus Status { get; set; } = RoomStatus.Active;
         public List<RoomImage> RoomImages { get; set; } = new List<RoomImage>();
         //relaion 
         public ICollection<ResidentStay> ResidentStays { get; set; } = new List<ResidentStay>();

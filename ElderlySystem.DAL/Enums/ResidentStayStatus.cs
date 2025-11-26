@@ -2,8 +2,7 @@
 {
     public enum ResidentStayStatus
     {
-        Active,        
-        Completed,     
-        Cancelled     
+        Active = 1,        
+        Finish = 2,          
     }
 }

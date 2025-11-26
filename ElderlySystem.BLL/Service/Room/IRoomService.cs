@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ElderlySystem.BLL.Helpers;
+using ElderlySystem.DAL.DTO.Request.Room;
 
 namespace ElderlySystem.BLL.Service.Room
 {
     public interface IRoomService
     {
+        Task<ServiceResult> AddRoomAsync(RoomCreateRequest request);
     }
 }
