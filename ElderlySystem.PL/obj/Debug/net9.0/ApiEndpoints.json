@@ -84,6 +84,22 @@
   },
   {
     "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.RoomController",
+    "Method": "DeleteRoom",
+    "RelativePath": "api/Admin/Room/delete-Room/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.RoomController",
     "Method": "ToggleStatus",
     "RelativePath": "api/Admin/Room/toggle-status/{RoomId}",
     "HttpMethod": "PATCH",

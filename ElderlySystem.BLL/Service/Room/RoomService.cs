@@ -4,6 +4,7 @@ using ElderlySystem.DAL.DTO.Request.Room;
 using ElderlySystem.DAL.Enums;
 using ElderlySystem.DAL.Model;
 using ElderlySystem.DAL.Repositories.Room;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ElderlySystem.BLL.Service.Room
 {
@@ -101,6 +102,23 @@ namespace ElderlySystem.BLL.Service.Room
                 return ServiceResult.Failure("حدث خطأ أثناء تحديث صور الغرفة.");
 
             return ServiceResult.SuccessMessage("تم تحديث صور الغرفة بنجاح.");
+
+        }
+        public async Task<ServiceResult> DeleteRoomAsync(int id)
+        {
+            var room = await _repository.GetRoomByIdWithImagesAsync(id);
+            if(room is null)
+                return ServiceResult.Failure("الغرفة غير متوفرة.");
+            if (room.CurrentCapacity > 0)
+                return ServiceResult.Failure("لا يمكن حذف الغرفة لانها تحتوي على مقيمين حاليا");
+            foreach (var img in room.RoomImages.ToList())
+            {
+                await _file.DeleteAsync(img.PublicId);
+            }
+            var deleted = await _repository.DeleteRoomAsync(room);
+            if (!deleted)
+                return ServiceResult.Failure("حدث خطأ أثناء حذف الغرفة.");
+            return ServiceResult.SuccessMessage("تم حذف الغرفة بنجاح.");
 
         }
 

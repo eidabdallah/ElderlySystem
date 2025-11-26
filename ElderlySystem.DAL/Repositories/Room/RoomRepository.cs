@@ -49,7 +49,12 @@ namespace ElderlySystem.DAL.Repositories.Room
             }
             return await _context.SaveChangesAsync() > 0;
         }
-
+        public async Task<bool> DeleteRoomAsync(DAL.Model.Room room)
+        {
+            _context.RoomImages.RemoveRange(room.RoomImages);
+            _context.Rooms.Remove(room);
+            return await _context.SaveChangesAsync() > 0;
+        }
 
 
     }

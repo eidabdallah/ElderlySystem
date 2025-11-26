@@ -1,4 +1,5 @@
-﻿using ElderlySystem.BLL.Service.Room;
+﻿using Azure.Core;
+using ElderlySystem.BLL.Service.Room;
 using ElderlySystem.DAL.DTO.Request.Room;
 using ElderlySystem.DAL.Model;
 using Microsoft.AspNetCore.Authorization;
@@ -52,6 +53,16 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
         public async Task<IActionResult> ChangeImageRoom([FromRoute] int RoomId , [FromForm] ImageRoomRequest request)
         {
             var result = await _service.ChangeImageRoomAsync(RoomId , request);
+
+            if (!result.Success)
+                return BadRequest(new { message = result.Message });
+
+            return Ok(new { message = result.Message });
+        }
+        [HttpDelete("delete-Room/{id}")]
+        public async Task<IActionResult> DeleteRoom([FromRoute] int id)
+        {
+            var result = await _service.DeleteRoomAsync(id);
 
             if (!result.Success)
                 return BadRequest(new { message = result.Message });
