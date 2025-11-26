@@ -28,6 +28,15 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
             }
             return Ok(new { message = room.Message});
         }
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateRoom([FromRoute] int id ,[FromBody] UpdateRoomRequest request)
+        {
+            var room = await _service.UpdateRoomAsync(request , id);
+            if (!room.Success) {
+                return BadRequest(new { message = room.Message });
+            }
+            return Ok(new { message = room.Message });
+        }
     }
 }
  

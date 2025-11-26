@@ -21,5 +21,14 @@ namespace ElderlySystem.DAL.Repositories.Room
             await _context.AddAsync(room);
             await _context.SaveChangesAsync();
         }
+        public async Task<DAL.Model.Room?> GetRoomByIdAsync(int id)
+        {
+            return await _context.Rooms.FindAsync(id);
+        }
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

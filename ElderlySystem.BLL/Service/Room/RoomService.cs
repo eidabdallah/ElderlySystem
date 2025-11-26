@@ -40,7 +40,28 @@ namespace ElderlySystem.BLL.Service.Room
             }
             await _repository.AddRoomAsync(room);
             return ServiceResult.SuccessMessage("تم إضافة الغرفة بنجاح.");
+        }
+        public async Task<ServiceResult> UpdateRoomAsync(UpdateRoomRequest request , int id)
+        {
+            var room = await _repository.GetRoomByIdAsync(id);
+            if (room is null)
+                return ServiceResult.Failure("الغرفة غير متوفره ");
 
+            if (request.Price is not null)
+                room.Price = request.Price.Value;
+            if (request.RoomType is not null)
+                room.RoomType = request.RoomType.Value;
+            if (request.Capacity is not null)
+            {
+                if (request.Capacity < room.CurrentCapacity)
+                    return ServiceResult.Failure("السعة الجديدة أقل من السعة الحالية، غير مسموح.");
+
+                room.Capacity = request.Capacity.Value;
+            }
+            if (!string.IsNullOrWhiteSpace(request.Description))
+                room.Description = request.Description;
+            await _repository.SaveChangesAsync();
+            return ServiceResult.SuccessMessage("تم تحديث بيانات الغرفة بنجاح.");
         }
 
     }
