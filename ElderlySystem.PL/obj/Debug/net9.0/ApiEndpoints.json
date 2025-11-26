@@ -1,5 +1,47 @@
 [
   {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.ElderlyController",
+    "Method": "GetAllElderlyRegisterRequest",
+    "RelativePath": "api/Admin/Elderly",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.ElderlyController",
+    "Method": "GetEderlyDetails",
+    "RelativePath": "api/Admin/Elderly/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.ElderlyController",
+    "Method": "ChangeStatusElderly",
+    "RelativePath": "api/Admin/Elderly/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.RoomController",
     "Method": "GetAllRoom",
     "RelativePath": "api/Admin/Room",

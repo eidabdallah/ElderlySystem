@@ -1,4 +1,5 @@
-﻿using ElderlySystem.DAL.Data;
+﻿using EderlySystem.DAL.Enums;
+using ElderlySystem.DAL.Data;
 using ElderlySystem.DAL.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,9 +15,11 @@ namespace ElderlySystem.DAL.Repositories.Elderly
         public async Task<List<DAL.Model.Elderly>> GetEldersBySponsorIdAsync(string sponsorId)
         {
             return await _context.ElderlySponsors
-                .Where(es => es.SponsorId == sponsorId).Include(es => es.Elderly)
-                .Select(es => es.Elderly).ToListAsync();
+                .Where(es => es.SponsorId == sponsorId && es.status == Status.Active)
+                .Select(es => es.Elderly)
+                .ToListAsync();
         }
+
         public async Task<bool> ElderlyExistsAsync(string nationalId)
         {
             return await _context.Elderlies
@@ -36,7 +39,7 @@ namespace ElderlySystem.DAL.Repositories.Elderly
         {
             return await _context.Elderlies
                 .AsNoTracking()
-                .FirstOrDefaultAsync(e => e.NationalId == nationalId);
+                .FirstOrDefaultAsync(e => e.NationalId == nationalId && e.status == Status.Active);
         }
         public async Task<bool> ExistsElderlyLinkToSponsorAsync(int elderlyId, string sponsorId)
         {
@@ -47,6 +50,30 @@ namespace ElderlySystem.DAL.Repositories.Elderly
         {
             return await _context.Elderlies
                                  .AnyAsync(e => e.Id == elderlyId);
+        }
+        public async Task<List<DAL.Model.Elderly>> GetAllElderlyRegisterRequestAsync()
+        {
+            return await _context.Elderlies.Where(e=> e.status == Status.Pending).AsNoTracking().ToListAsync();
+        }
+        public async Task<DAL.Model.Elderly?> GetEderlyDetailsAsync(int id)
+        {
+             return await _context.Elderlies.Include(e => e.ElderlySponsors)
+               .ThenInclude(es => es.Sponsor).AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+        }
+        public async Task<bool> ChangeStatusElderlyAsync(int id)
+        {
+            var elderly = await _context.Elderlies.FirstOrDefaultAsync(e => e.Id == id);
+
+            if (elderly == null)
+                return false;
+
+            // Toggle
+            elderly.status = elderly.status == Status.Pending
+                ? Status.Active
+                : Status.Pending;
+
+            _context.Elderlies.Update(elderly);
+            return await _context.SaveChangesAsync()>0;
         }
     }
 }

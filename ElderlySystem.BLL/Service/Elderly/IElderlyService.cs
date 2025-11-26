@@ -14,6 +14,9 @@ namespace ElderlySystem.BLL.Service.Elderly
         Task<ServiceResult> AddElderlyBySponsorAsync(string sponsorId, ElderlyRegisterRequest request);
         Task<ServiceResult> GetElderlyByNationalIdAsync(string nationalId);
         Task<ServiceResult> LinkSponsorToElderlyAsync(string sponsorId, LinkElderlySponsorRequest request);
+        Task<ServiceResult> GetAllElderlyRegisterRequestAsync();
+        Task<ServiceResult> GetEderlyDetailsAsync(int id);
+        Task<ServiceResult> ChangeStatusElderlyAsync(int id);
 
     }
 }

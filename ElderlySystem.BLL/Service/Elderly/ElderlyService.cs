@@ -82,5 +82,54 @@ namespace ElderlySystem.BLL.Service.Elderly
             await _repository.AddElderlySponsorAsync(entity);
             return ServiceResult.SuccessMessage("تم ربط الكفيل بالمسن بنجاح");
         }
+        
+        // for admin : 
+        public async Task<ServiceResult> GetAllElderlyRegisterRequestAsync()
+        {
+            var request = await _repository.GetAllElderlyRegisterRequestAsync();
+            var elderlies = request.Adapt<List<ElderlyRegisterInfoResponse>>();
+            return ServiceResult.SuccessWithData(elderlies, "جلب جميع طلبات تسجيل المسنين");
+        }
+        public async Task<ServiceResult> GetEderlyDetailsAsync(int id)
+        {
+            var elderly = await _repository.GetEderlyDetailsAsync(id);
+
+            if (elderly is null)
+                return ServiceResult.Failure("المسن غير موجود.");
+
+            var response = new ElderlyDetailsResponse
+            {
+                Id = elderly.Id,
+                Name = elderly.Name,
+                NationalId = elderly.NationalId,
+                Age = elderly.Age,
+                Doctrine = elderly.Doctrine,
+                City = elderly.City,
+                Street = elderly.Street,
+                HealthStatus = elderly.HealthStatus,
+                BDate = elderly.BDate,
+                ComprehensiveExamination = elderly.ComprehensiveExamination,
+                HealthInsurance = elderly.HealthInsurance,
+                NationalIdImage = elderly.NationalIdImage,
+                Diseases = elderly.Diseases.ToList(),
+                Sponsors = elderly.ElderlySponsors.Select(es => new ElderlySponsorInfoResponse
+                {
+                    SponsorName = es.Sponsor.FullName,      
+                    SponsorPhone = es.Sponsor.PhoneNumber,  
+                    KinShipName = es.KinShip,               
+                    Degree = es.Degree                       
+                }).ToList()
+            };
+            return ServiceResult.SuccessWithData(response, "تم جلب تفاصيل المسن بنجاح");
+        }
+        // to accept ederly in system
+        public async Task<ServiceResult> ChangeStatusElderlyAsync(int id)
+        {
+            var ederly = await _repository.ChangeStatusElderlyAsync(id);
+            if (!ederly)
+                return ServiceResult.Failure("المسن غير موجود");
+
+            return ServiceResult.SuccessMessage("تم تغيير الحالة بنجاح");
+        }
     }
 }
