@@ -12,6 +12,7 @@ namespace ElderlySystem.BLL.Services.Authentication
 
         Task<ServiceResult> ForgotPassword(ForgotPasswordRequest forgotPasswordRequest);
         Task<ServiceResult> ResetPassword(ResetPasswordRequest resetPasswordRequest);
+        Task<ServiceResult> AuthMeAsync(string userId);
 
     }
 }

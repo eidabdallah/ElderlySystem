@@ -1,6 +1,8 @@
 ﻿using ElderlySystem.BLL.Services.Authentication;
 using ElderlySystem.DAL.DTO.Request.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ElderlySystem.PL.Areas.Identity.Controller
 {
@@ -70,6 +72,18 @@ namespace ElderlySystem.PL.Areas.Identity.Controller
             if (!result.Success)
                 return BadRequest(new { message = result.Message });
             return Ok(new { message = result.Message });
+        }
+        [Authorize]
+        [HttpGet("me")]
+        public async Task<IActionResult> AuthMe()
+        {
+            var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(UserId))
+                return Unauthorized();
+            var result = await _authenticationService.AuthMeAsync(UserId!);
+            if (!result.Success)
+                return BadRequest(new { message = result.Message });
+            return Ok(new { message = result.Message , data = result.Data });
         }
     }
 }

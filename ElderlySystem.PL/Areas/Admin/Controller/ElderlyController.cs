@@ -33,7 +33,7 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
             }
             return Ok(new { message = result.Message, Elderly = result.Data });
         }
-        // change status : 
+        // change status to accpet elderly in the system: 
         [HttpPatch("{id}")]
         public async Task<IActionResult> ChangeStatusElderly(int id)
         {

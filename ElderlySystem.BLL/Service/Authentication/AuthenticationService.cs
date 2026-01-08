@@ -1,6 +1,7 @@
 ﻿using EderlySystem.DAL.Enums;
 using ElderlySystem.BLL.Helpers;
 using ElderlySystem.DAL.DTO.Request.Auth;
+using ElderlySystem.DAL.DTO.Response.User;
 using ElderlySystem.DAL.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -182,5 +184,21 @@ namespace ElderlySystem.BLL.Services.Authentication
             return ServiceResult.SuccessMessage("تم تغيير كلمة المرور بنجاح.");
         }
 
+        public async Task<ServiceResult> AuthMeAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null)
+                return ServiceResult.Failure("المستخدم غير موجود.");
+
+
+            var response = new AuthMeResponse
+            {
+                Id = user.Id,
+                Email = user.Email!,
+                FullName = user.FullName ,
+                PhoneNumber = user.PhoneNumber!
+            };
+            return ServiceResult.SuccessWithData(response, "تم جلب معلومات المستخدم");
+        }
     }
 }

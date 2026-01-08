@@ -379,6 +379,16 @@
   },
   {
     "ContainingType": "ElderlySystem.PL.Areas.Identity.Controller.AccountController",
+    "Method": "AuthMe",
+    "RelativePath": "api/Identity/Account/me",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ElderlySystem.PL.Areas.Identity.Controller.AccountController",
     "Method": "Register",
     "RelativePath": "api/Identity/Account/register",
     "HttpMethod": "POST",
