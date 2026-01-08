@@ -3,10 +3,7 @@ using ElderlySystem.BLL.Services.User;
 using ElderlySystem.DAL.DTO.Request.User;
 using ElderlySystem.DAL.Enums;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace ElderlySystem.PL.Areas.Admin.Controller
 {
@@ -54,19 +51,6 @@ namespace ElderlySystem.PL.Areas.Admin.Controller
                 return BadRequest(new { message = user.Message });
             }
             return Ok(new { message = user.Message, user = user.Data });
-        }
-        [Authorize(Roles = "Nurse,Admin,Sponsor,Secretary")]
-        [HttpGet("")]
-        public async Task<IActionResult> GetByIdForUser()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = await _userService.GetByIdAsync(userId!);
-            if (!user.Success)
-            {
-                return BadRequest(new { message = user.Message });
-            }
-            return Ok(new { message = user.Message, user = user.Data });
-
         }
         [HttpPatch("Change-Role/{id}")]
         public async Task<IActionResult> ChangeRole([FromRoute] string id, [FromBody] ChangeRoleRequest request)

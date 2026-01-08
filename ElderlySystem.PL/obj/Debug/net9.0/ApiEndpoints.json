@@ -184,16 +184,6 @@
   },
   {
     "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
-    "Method": "GetByIdForUser",
-    "RelativePath": "api/Admin/User",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ElderlySystem.PL.Areas.Admin.Controller.UserController",
     "Method": "GetByIdForAdmin",
     "RelativePath": "api/Admin/User/{userId}",
     "HttpMethod": "GET",
